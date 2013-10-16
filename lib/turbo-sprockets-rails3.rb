@@ -7,8 +7,12 @@ module Sprockets
 end
 
 require 'sprockets'
-Dir[File.expand_path('../turbo-sprockets/sprockets_overrides/*.rb', __FILE__)].each do |f|
-  require f
+require 'sass-rails'
+['../turbo-sprockets/sprockets_overrides/*.rb',
+ '../turbo-sprockets/sass_rails_overrides/**/*.rb'].map do |files|
+  Dir[File.expand_path(files, __FILE__)].each do |f|
+    require f
+  end
 end
 
 require 'turbo-sprockets/railtie'

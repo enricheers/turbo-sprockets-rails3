@@ -29,7 +29,9 @@ if defined?(Sprockets::StaticCompiler)
         env.each_logical_path(paths) do |logical_path|
           # Fetch asset without any processing or compression,
           # to calculate a digest of the concatenated source files
+          env.process = {process: false}
           next unless asset = env.find_asset(logical_path, :process => false)
+          env.process = {process: true}
           @source_digests[logical_path] = asset.digest
 
           # Recompile if digest has changed or compiled digest file is missing

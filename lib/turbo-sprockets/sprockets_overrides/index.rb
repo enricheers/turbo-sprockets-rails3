@@ -5,6 +5,8 @@ module Sprockets
 
     # Adds :process options
 
+    attr_accessor :process
+
     def find_asset(path, options = {})
       options[:bundle]  = true unless options.key?(:bundle)
       options[:process] = true unless options.key?(:process)
